@@ -21,10 +21,15 @@ services:
       - mongodb
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=https://prio-backend-latest.onrender.com
     container_name: frontend
     ports:
       - "80:80"
+    environment:
+      - PORT=80
     depends_on:
       - backend
 
